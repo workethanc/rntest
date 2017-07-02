@@ -1,6 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga'
@@ -8,8 +6,11 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from './src/reducers';
 import rootSaga from './src/sagas';
 
-const sagaMiddleware = createSagaMiddleware();
+// ui: Components, Containers
+import {Testing, CTintro, ViewTesting} from './src/containers';
+// ################################################333
 
+const sagaMiddleware = createSagaMiddleware();
 let middleware = [sagaMiddleware];
 
 const store = createStore(
@@ -22,26 +23,17 @@ sagaMiddleware.run(rootSaga);
 class App extends React.Component {
   constructor(props){
     super(props);
-    
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <ViewTesting />
+      /*<Provider store={store} >
+        <CTintro />  
+      </Provider>*/
     );
   }
 } 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },  
-});
 
 export default App;
   
